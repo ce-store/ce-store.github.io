@@ -65,7 +65,13 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "List of sentences as JSON array (default) or in Controlled English (text/plain)"
+            "description" : "List of sentences as JSON array (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/getSentence"
+              }
+            }
           }
         }
       },
@@ -84,7 +90,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "List of parse sentences as JSON array (default) or in Controlled English (text/plain)"
+            "description" : "List of parse sentences as JSON array (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           }
         }
       }
@@ -104,7 +113,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Sentence details as JSON array (default) or in Controlled English (text/plain)"
+            "description" : "Sentence details as JSON array (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/getSentence"
+            }
           }
         }
       },
@@ -121,7 +133,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The sentence was not found (text/plain response only)"
@@ -195,7 +210,10 @@ var spec =
         "description" : "This is a cascade delete. All sentences within the concept will be deleted, plus any entities created from those sentences, including:\n* Models\n* Concepts\n* Properties\n* Instances\n* Rules\n* Queries\n\nThe deletion of the entity occurs if the deletion of the sentence(s) results in no remaining sentence referencing the entity in question.\n",
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The concept was not found (text/plain response only)"
@@ -368,7 +386,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The concept was not found (text/plain response only)"
@@ -452,7 +473,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The concept was not found (text/plain response only)"
@@ -556,7 +580,10 @@ var spec =
         "summary" : "Delete all instances",
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           }
         }
       }
@@ -587,7 +614,13 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
+          },
+          "404" : {
+            "description" : "The concept was not found (text/plain response only)"
           }
         }
       }
@@ -877,7 +910,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "List of queries as JSON array (default) or in Controlled English (text/plain)"
+            "description" : "List of queries as JSON array (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/specialPatternArray"
+            }
           }
         }
       }
@@ -893,7 +929,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Details for the query as a JSON object (default) or in Controlled English (text/plain)"
+            "description" : "Details for the query as a JSON object (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/query_or_rule"
+            }
           },
           "404" : {
             "description" : "The query was not found (text/plain response only)"
@@ -908,7 +947,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The query was not found (text/plain response only)"
@@ -927,7 +969,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "A JSON query result (default) or in Controlled English (text/plain)"
+            "description" : "A JSON query result (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/query_or_ruleExecution"
+            }
           },
           "404" : {
             "description" : "The query was not found (text/plain response only)"
@@ -944,7 +989,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "List of rules as JSON array (default) or in Controlled English (text/plain)"
+            "description" : "List of rules as JSON array (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/rules"
+            }
           }
         }
       }
@@ -960,7 +1008,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Details for the rule as a JSON object (default) or in Controlled English (text/plain)"
+            "description" : "Details for the rule as a JSON object (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/query_or_rule"
+            }
           },
           "404" : {
             "description" : "The rule was not found (text/plain response only)"
@@ -975,7 +1026,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The rule was not found (text/plain response only)"
@@ -993,7 +1047,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "A JSON query result (default) or in Controlled English (text/plain)"
+            "description" : "A JSON query result (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/query_or_ruleExecution"
+            }
           },
           "404" : {
             "description" : "The rule was not found (text/plain response only)"
@@ -1009,7 +1066,10 @@ var spec =
         } ],
         "responses" : {
           "200" : {
-            "description" : "A JSON query result (default) or in Controlled English (text/plain)"
+            "description" : "A JSON query result (default) or in Controlled English (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/ruleExecution"
+            }
           },
           "404" : {
             "description" : "The rule was not found (text/plain response only)"
@@ -1077,7 +1137,10 @@ var spec =
         "description" : "This is a cascade delete. All sentences within the model will be deleted, plus any entities created from those sentences, including:\n* Models\n* Concepts\n* Properties\n* Instances\n* Rules\n* Queries\n\nThe deletion of the entity occurs if the deletion of the sentence(s) results in no remaining sentence referencing the entity in question.\n",
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The model was not found (text/plain response only)"
@@ -1190,7 +1253,10 @@ var spec =
         "description" : "This is a cascade delete. All sentences within the source will be deleted, plus any entities created from those sentences, including:\n* Models\n* Concepts\n* Properties\n* Instances\n* Rules\n* Queries\n\nThe deletion of the entity occurs if the deletion of the sentence(s) results in no remaining sentence referencing the entity in question.\n",
         "responses" : {
           "200" : {
-            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)"
+            "description" : "Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)",
+            "schema" : {
+              "$ref" : "#/definitions/writeResponse"
+            }
           },
           "404" : {
             "description" : "The model was not found (text/plain response only)"
@@ -1936,6 +2002,225 @@ var spec =
       "properties" : {
         "value" : {
           "type" : "string"
+        }
+      }
+    },
+    "getSentence" : {
+      "type" : "object",
+      "properties" : {
+        "_type" : {
+          "type" : "string"
+        },
+        "_style" : {
+          "type" : "string"
+        },
+        "_id" : {
+          "type" : "string"
+        },
+        "_created" : {
+          "type" : "integer"
+        },
+        "sen_type" : {
+          "type" : "string"
+        },
+        "validity" : {
+          "type" : "string"
+        },
+        "ce_text" : {
+          "type" : "string"
+        },
+        "ce_structured_text" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object"
+          }
+        },
+        "source_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "writeResponse" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/specialStatistics"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "structured_response" : {
+            "type" : "object",
+            "properties" : {
+              "invalid_sentences" : {
+                "type" : "integer"
+              },
+              "command_count" : {
+                "type" : "integer"
+              },
+              "valid_sentences" : {
+                "type" : "integer"
+              },
+              "execution_time" : {
+                "type" : "integer"
+              }
+            }
+          }
+        }
+      } ]
+    },
+    "query_or_rule" : {
+      "type" : "object",
+      "properties" : {
+        "_id" : {
+          "type" : "string"
+        },
+        "ce_text" : {
+          "type" : "string"
+        },
+        "concepts" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "variable_id" : {
+                "type" : "string"
+              },
+              "concept_name" : {
+                "type" : "string"
+              },
+              "included" : {
+                "type" : "boolean"
+              },
+              "premise_or_conclusion" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "attributes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "variable_id" : {
+                "type" : "string"
+              },
+              "source_variable" : {
+                "type" : "string"
+              },
+              "property_name" : {
+                "type" : "string"
+              },
+              "property_format" : {
+                "type" : "string"
+              },
+              "premise_or_conclusion" : {
+                "type" : "string"
+              },
+              "included" : {
+                "type" : "boolean"
+              },
+              "negated_domain" : {
+                "type" : "boolean"
+              },
+              "negated_range" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        },
+        "relationships" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "source_variable" : {
+                "type" : "string"
+              },
+              "target_variable" : {
+                "type" : "string"
+              },
+              "property_name" : {
+                "type" : "string"
+              },
+              "property_format" : {
+                "type" : "string"
+              },
+              "premise_or_conclusion" : {
+                "type" : "string"
+              },
+              "negated_domain" : {
+                "type" : "boolean"
+              },
+              "negated_range" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "query_or_ruleExecution" : {
+      "type" : "object",
+      "properties" : {
+        "query" : {
+          "type" : "string"
+        },
+        "query_time" : {
+          "type" : "integer"
+        },
+        "number_of_rows" : {
+          "type" : "integer"
+        },
+        "headers" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "types" : {
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "results" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "ruleExecution" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/specialStatistics"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "structured_response" : {
+            "$ref" : "#/definitions/query_or_ruleExecution"
+          }
+        }
+      } ]
+    },
+    "rules" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "qr_type" : {
+            "type" : "string"
+          },
+          "rule_name" : {
+            "type" : "string"
+          },
+          "rule_time" : {
+            "type" : "string"
+          },
+          "ce" : {
+            "type" : "string"
+          }
         }
       }
     }
