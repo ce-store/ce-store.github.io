@@ -487,6 +487,8 @@ paths:
       tags:
       - Instances
       summary: Delete instance
+      parameters:
+      - $ref: '#/parameters/instanceName'
       responses:
         200:
           description: Summary of deletion request as JSON (default) or a Controlled English confirmation of the deletion (text/plain)
@@ -1138,14 +1140,70 @@ paths:
       tags:
       - Special Requests
       summary: Search the whole CE Store for the specified keywords
-      description: Listed as deprecated as this call is not currently working
-      deprecated: true
+      parameters:
+        - name: keywords
+          in: query
+          description: A space separated list of keywords to search for.  Use double-quotes to surround a string containing spaces
+          required: true
+          type: array
+          collectionFormat: ssv
+          items:
+            type: string
+        - name: caseSensitive
+          in: query
+          description: Make the keyword search case sensitive if set to true
+          type: boolean
+          default: false
+        - name: restrictToConcepts
+          in: query
+          description: A comma separated list of concept names.  The keyword search will only occur if the instance also matches concepts in this list.  No space before/after comma.  Do not use quotes to surround strings containing spaces.
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
+        - name: restrictToProperties
+          in: query
+          description: A comma separated list of property names.  The keyword search will only occur if the instance also matches concepts in this list.  No space before/after comma.  Do not use quotes to surround strings containing spaces.
+          type: array
+          collectionFormat: csv
+          items:
+            type: string
       produces: 
       - application/json
       responses:
         200:
-          description: Unknown
-  
+          description: A keyword search object
+          schema:
+            type: object
+            properties:
+              search_terms:
+                type: array
+                items:
+                  type: string
+              search_concepts:
+                items:
+                  type: string
+              search_properties:
+                items:
+                  type: string
+              search_results:
+                type: object
+                properties:
+                  concept_names:
+                    type: array
+                    items:
+                      type: string
+                  instance_name:
+                    type: string
+                  instance_label:
+                    type: string
+                  property_name:
+                    type: string
+                  property_value:
+                    type: string
+                  property_type:
+                    type: string
+            
   /special/shadow-concepts:
     get:
       tags:
